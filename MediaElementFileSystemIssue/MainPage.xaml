@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:vm="clr-namespace:MediaElementFileSystemIssue"
+             x:Class="MediaElementFileSystemIssue.MainPage"             
+             x:DataType="vm:VM">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+
+            <Button
+                Text="Load Video"
+                Command="{Binding LoadVideoCommand}"/>
+
+            <toolkit:MediaElement
+                    x:Name="mediaElement"
+                    Aspect="AspectFit"
+                    BackgroundColor="Black"
+                    MaximumHeightRequest="{OnPlatform 200,
+                                                      WinUI=500}"
+                    MaximumWidthRequest="{OnPlatform 300,
+                                                     WinUI=700}"
+                    Source="{Binding CapturedVideo}" />
+            
+            <!-- REPLACE THE FILE PATH WHERE YOUR VIDEO IS BELOW-->
+
+            <!-- It works when you hardcode it as such:-->
+            <!-- Source="filesystem://C:\Users\User-Pc\Videos\yourvideonamehere.mp4"-->
+            
+            <!-- MVVM binding does not-->
+            <!-- Source="{Binding CapturedVideo}"-->
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
